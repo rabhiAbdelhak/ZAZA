@@ -1,0 +1,55 @@
+import { MapInnerItem } from '@/components/sheet-importation/SheetMapping'
+
+export const orderMapping: MapInnerItem[] = [
+  { field: 'order_id', mappedFiled: '', required: true },
+  { field: 'product_name', mappedFiled: '', required: true },
+  { field: 'client_last_name', mappedFiled: '', required: true },
+  { field: 'client_first_name', mappedFiled: '', required: true },
+  { field: 'client_phone', mappedFiled: '', required: true },
+  { field: 'client_phone2', mappedFiled: '', required: false },
+  { field: 'client_address', mappedFiled: '', required: true },
+  { field: 'price', mappedFiled: '', required: true },
+  { field: 'wilaya', mappedFiled: '', required: true },
+  { field: 'commune', mappedFiled: '', required: true },
+  { field: 'package_type', mappedFiled: '', required: false },
+  { field: 'delivery_type_id', mappedFiled: '', required: false },
+  { field: 'free_delivery', mappedFiled: '', required: false },
+  { field: 'can_be_opened', mappedFiled: '', required: true },
+  { field: 'delivery_type', mappedFiled: '', required: false },
+  { field: 'office_id', mappedFiled: '', required: false },
+]
+
+export const packageMapping: MapInnerItem[] = [
+  { field: 'package_id', mappedFiled: '', required: true },
+  { field: 'name', mappedFiled: '', required: true },
+  { field: 'client_last_name', mappedFiled: '', required: true },
+  { field: 'client_first_name', mappedFiled: '', required: true },
+  { field: 'client_phone', mappedFiled: '', required: true },
+  { field: 'client_phone2', mappedFiled: '', required: false },
+  { field: 'adresse', mappedFiled: '', required: true },
+  { field: 'price', mappedFiled: '', required: true },
+  { field: 'can_be_opened', mappedFiled: '', required: true },
+  { field: 'office_id', mappedFiled: '', required: false },
+  { field: 'type', mappedFiled: '', required: false },
+  { field: 'weight', mappedFiled: '', required: true },
+  { field: 'delivery_type', mappedFiled: '', required: true },
+  { field: 'order_id', mappedFiled: '', required: true },
+  { field: 'wilaya', mappedFiled: '', required: true },
+  { field: 'commune', mappedFiled: '', required: true },
+  { field: 'free_delivery', mappedFiled: '', required: false },
+]
+
+export const productMapping: MapInnerItem[] = [
+  { field: 'name', mappedFiled: '', required: true },
+  { field: 'reference', mappedFiled: '', required: true },
+  { field: 'short_description', mappedFiled: '', required: true },
+  { field: 'description', mappedFiled: '', required: true },
+  { field: 'weight', mappedFiled: '', required: true },
+  { field: 'width', mappedFiled: '', required: false },
+  { field: 'height', mappedFiled: '', required: true },
+  { field: 'thickness', mappedFiled: '', required: true },
+  { field: 'price1', mappedFiled: '', required: true },
+  { field: 'price2', mappedFiled: '', required: false },
+  { field: 'price3', mappedFiled: '', required: false },
+  { field: 'buying_price', mappedFiled: '', required: true },
+]

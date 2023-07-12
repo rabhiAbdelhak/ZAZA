@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/components/dashboard/order/order-status-tag.js",
+    "src/components/add-user-btn.js",
+    "src/queries/communes.js",
+    "src/components/WialayaChipFiler.js",
+    "src/components/simple-value-chi-filter.tsx",
+    "src/components/dashboard/package/importation/importation-load-ggogle-drive.tsx"
+  ],
+  "exclude": ["node_modules"]
+}

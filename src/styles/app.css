@@ -1,0 +1,163 @@
+.zimou-no-data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.zimou-no-data img {
+  width: 100px;
+}
+
+.zimou-no-data .title {
+  font-weight: 700;
+  color: #444;
+  margin: 0;
+}
+
+.zimou-no-data .text {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.zimou-checks-text label {
+  border: 2px solid #f3f3f3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  border-radius: 7px;
+  margin: 8px 4px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: 9px;
+  padding: 20px 5px;
+  opacity: 0.8;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  margin-bottom: 7px;
+}
+
+.zimou-checks-text label:hover {
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  opacity: 0.8;
+}
+
+.zimou-checks-text label img {
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.zimou-checks-text input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.zimou-checks-text input[type=radio] + label {
+  cursor: pointer;
+}
+
+.zimou-checks-text .text-name {
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateY(30px);
+          transform: translateY(30px);
+  height: 0;
+  opacity: 0;
+}
+
+.zimou-checks-text .text-name-only {
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  font-weight: 700;
+  height: auto;
+  opacity: 1;
+}
+
+.zimou-checks-text input[type=radio]:checked + label {
+  border: 2px solid #BE1E2D;
+  opacity: 1;
+  background-color: #f7f7f7;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.zimou-checks-text input[type=radio]:checked + label .text-name {
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  height: auto;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+}
+
+.zimou-checks-text input[type=radio]:checked + label img {
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.zimou-checks-text .title-price {
+  font-weight: 800;
+  font-size: 15px;
+  margin: 0;
+}
+
+.zimou-checks-text .meta-loc, .zimou-checks-text .meta-text {
+  margin: 0;
+}
+
+.zimou-checks-text .meta-loc {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.zimou-checks-text .meta-loc svg {
+  font-size: 12px;
+}
+
+.zimou-checks-text .meta-text {
+  font-size: 12px;
+}
+
+.zimou-checks-text.zimou-check-item label {
+  width: 125px;
+  height: 80px;
+  padding: 5px;
+}
+
+.zimou-checks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.css-1g77db0-MuiTableCell-root {
+  z-index: 44;
+}
+/*# sourceMappingURL=app.css.map */

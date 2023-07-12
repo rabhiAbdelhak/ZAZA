@@ -1,0 +1,241 @@
+import {
+  Box,
+  FormHelperText,
+  Grid,
+  Typography,
+  Divider,
+  Button,
+} from '@mui/material'
+import EditableTextInput from '@/components/EditableTextInput'
+import SupplierSelect from '../supplier/supplier-select'
+import PurchaseOrderProducts from './purchase-order-products'
+import VoucherPrintModal from '../product/exit-voucher/PDFVoucher/VoucherPrintModal'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { useTranslation } from 'react-i18next'
+import { useRef, useState } from 'react'
+
+type PurchaseOrderFormProps = {
+  initialValues?: Partial<PurchaseOrder>
+  isEditMode?: boolean
+  isDraftMode?: boolean
+  fromId?: string
+  onSubmit: (data: Partial<PurchaseOrderFormData>) => void
+}
+function PurchaseOrderForm({
+  initialValues,
+  isEditMode = false,
+  isDraftMode = true,
+  fromId,
+  onSubmit,
+}: PurchaseOrderFormProps) {
+  const { t } = useTranslation()
+  const [print, setPrint] = useState<any>(null)
+  const timeoutRef = useRef<NodeJS.Timeout>()
+  const formik = useFormik({
+    initialValues: {
+      supplier: initialValues?.supplier,
+      products: initialValues?.products || [],
+      origin: initialValues?.origin || '',
+      comment: initialValues?.comment || '',
+      date: initialValues?.date || '',
+    },
+    validationSchema: Yup.object({
+      supplier: Yup.mixed().required(t('form.FieldRequired')),
+      products: Yup.array()
+        .min(1, t('form.FieldRequired'))
+        .required(t('form.FieldRequired')),
+      date: Yup.date().required(t('form.FieldRequired')),
+    }),
+    onSubmit: (values) => {
+      const data: PurchaseOrderFormData = {
+        products: values.products,
+        comment: values.comment,
+        origin: values.origin,
+        supplier_id: values.supplier?.id,
+        date: values.date,
+      }
+      onSubmit && onSubmit(data)
+    },
+  })
+
+  const submitFormEditMode = () => {
+    if (isEditMode) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+      timeoutRef.current = setTimeout(formik.submitForm, 200)
+    }
+  }
+  const handlePrint = () => {
+    setPrint(formik?.initialValues)
+  }
+  const closePrint = () => {
+    setPrint(null)
+  }
+  const errorSupplier = formik.touched.supplier && formik.errors.supplier
+  const errorProduct = formik.touched.products && formik.errors.products
+  const errorDate = formik.touched.date && formik.errors.date
+  return (
+    <Box id={fromId} component="form" onSubmit={formik.handleSubmit}>
+      <Grid container spacing={3}>
+        <Grid item xs={6}>
+          <Box display="flex" gap={2} alignItems="center">
+            <Typography
+              sx={{ width: 100 }}
+              color={'inherit'}
+              variant="subtitle2"
+              component="div"
+            >
+              Supplier
+            </Typography>
+
+            <SupplierSelect
+              error={Boolean(errorSupplier)}
+              disabled={!isDraftMode}
+              selected={formik.values.supplier}
+              onSelected={(supplier) => {
+                formik.setValues({
+                  ...formik.values,
+                  supplier: supplier as Supplier,
+                  products: [],
+                })
+              }}
+              placeholder="Empty"
+            />
+          </Box>
+          {errorSupplier && (
+            <FormHelperText sx={{ ml: '95px' }} error={Boolean(errorSupplier)}>
+              {errorSupplier}
+            </FormHelperText>
+          )}
+          <Box display="flex" gap={2} alignItems="center">
+            <Typography
+              sx={{ width: 100 }}
+              color="inherit"
+              variant="subtitle2"
+              component="div"
+            >
+              Date
+            </Typography>
+            <EditableTextInput
+              error={Boolean(errorDate)}
+              typographyProps={{
+                height: 28,
+                pt: '2px',
+                variant: 'body2',
+                width: '100%',
+              }}
+              sx={{ fontSize: 'inherit', pt: 0 }}
+              fullWidth
+              placeholder="Empty"
+              name="date"
+              type="date"
+              value={formik.values.date}
+              textValue={formik.values.date}
+              onChange={formik.handleChange}
+              onBlur={submitFormEditMode}
+            />
+          </Box>
+          {errorDate && (
+            <FormHelperText sx={{ ml: '95px' }} error={Boolean(errorDate)}>
+              {errorDate}
+            </FormHelperText>
+          )}
+        </Grid>
+        <Grid item xs={6}>
+          <Box display="flex" gap={2} alignItems="center">
+            <Typography
+              sx={{ width: 100 }}
+              color="inherit"
+              variant="subtitle2"
+              component="div"
+            >
+              Ref
+            </Typography>
+            <EditableTextInput
+              typographyProps={{
+                height: 28,
+                pt: '2px',
+                variant: 'body2',
+                width: '100%',
+              }}
+              sx={{ fontSize: 'inherit', pt: 0 }}
+              fullWidth
+              placeholder="Empty"
+              name="origin"
+              value={formik.values.origin}
+              textValue={formik.values.origin}
+              onChange={formik.handleChange}
+              onBlur={submitFormEditMode}
+            />
+          </Box>
+          <Box display="flex" gap={2} alignItems="flex-start">
+            <Typography
+              sx={{ width: 100, mt: '2px' }}
+              color="inherit"
+              variant="subtitle2"
+              component="div"
+            >
+              Note
+            </Typography>
+            <EditableTextInput
+              multiline
+              typographyProps={{
+                minHeight: 28,
+                pt: '2px',
+                variant: 'body2',
+                width: '100%',
+              }}
+              sx={{ fontSize: 'inherit', pt: 0 }}
+              fullWidth
+              placeholder="Empty"
+              name="comment"
+              value={formik.values.comment}
+              textValue={formik.values.comment}
+              onChange={formik.handleChange}
+              onBlur={submitFormEditMode}
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <PurchaseOrderProducts
+            error={Boolean(errorProduct)}
+            supplierId={formik.values?.supplier?.id}
+            disabled={!formik.values.supplier || !isDraftMode}
+            products={formik.values.products}
+            onChange={(v) => formik.setFieldValue('products', v)}
+            onBlur={submitFormEditMode}
+          />
+          {errorProduct && (
+            <FormHelperText error={Boolean(errorProduct)}>
+              {errorProduct}
+            </FormHelperText>
+          )}
+        </Grid>
+      </Grid>
+      <Divider variant="middle" />
+      <Box
+        sx={{
+          height: 40,
+
+          mt: 2,
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
+      >
+        <Button variant="outlined" onClick={handlePrint}>
+          Print Voucher
+        </Button>
+      </Box>
+      <VoucherPrintModal
+        open={Boolean(print)}
+        data={print}
+        onClose={closePrint}
+        typeOfDocument={'Purchase'}
+      />
+    </Box>
+  )
+}
+
+export default PurchaseOrderForm

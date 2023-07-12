@@ -1,0 +1,29 @@
+export type Package = {
+  id: number
+  order_id: string
+  tracking_code: string
+  tracking_partner_company?: string
+  name: string
+  status_id: number
+  commune: Commune
+  delivery_type: string
+  client_first_name: string
+  client_last_name: string
+  client_phone: string
+  client_phone2?: string
+  address: string
+  price: number
+  price_to_pay: number
+  warehouse_price: number
+  total_price: number
+  package_type: string
+  store_payment_status_name: string
+  weight: number
+  quantity_items: number
+  can_be_opened: number
+  extra_weight_price: number
+  delivery_price: number
+  observation?: string
+  created_at: string
+  updated_at: string
+}

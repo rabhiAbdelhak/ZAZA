@@ -1,0 +1,118 @@
+$primary: #BE1E2D;
+// Dashboard Navbar
+.zimou-no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+    img {
+        width: 100px;
+    }
+    .title {
+        font-weight: 700;
+        color: #444;
+        margin: 0;
+    }
+    .text {
+        margin: 0;
+        font-size: 14px;
+        color: #666;
+    }
+}
+// Checkboxs & Radio Inputs
+.zimou-checks-text {
+    label {
+        border: 2px solid #f3f3f3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 7px;
+        margin: 8px 4px;
+        flex-direction: column;
+        margin-right: 9px;
+        padding: 20px 5px;
+        opacity: 0.8;
+        transition: all 0.4s;
+        margin-bottom: 7px;
+        &:hover {
+            transition: all 0.4s;
+            opacity: 0.8;
+        }
+        img {
+          transition: all 0.4s;
+        }
+    }
+    input[type=radio] { 
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      
+      input[type=radio] + label {
+        cursor: pointer;
+      }
+      .text-name {
+        transition: all 0.4s;
+        transform: translateY(30px);
+        height: 0;
+        opacity: 0;
+      }
+      .text-name-only {
+        transition: all 0.4s;
+        transform: translateY(0) ;
+        font-weight: 700;
+        height: auto;
+        opacity: 1;
+      }
+      input[type=radio]:checked + label {
+        border: 2px solid $primary;
+        opacity: 1;
+        background-color: #f7f7f7;
+        transition: all 0.4s;
+        .text-name {
+          transition: all 0.4s;
+          height: auto;
+          transform: translateY(0);
+          opacity: 1;
+        }
+        img {
+          transition: all 0.4s;
+        }
+      }
+      .title-price {
+        font-weight: 800;
+        font-size: 15px;
+        margin: 0;
+      }
+      .meta-loc, .meta-text {
+        margin: 0;
+      }
+      .meta-loc {
+        font-size: 12px;
+        font-weight: 600;
+        svg {
+            font-size: 12px;
+        }
+      }
+      .meta-text {
+        font-size: 12px;
+      }
+      &.zimou-check-item {
+        label {
+            width: 125px;
+            height: 80px;
+            padding: 5px;
+        }
+    }
+}
+.zimou-checks {
+    display: flex;
+    justify-content: flex-start;
+}
+// Fixed index Tables Head
+
+.css-1g77db0-MuiTableCell-root {
+  z-index: 44;
+}
